@@ -8,6 +8,7 @@
 import Foundation
 
 struct UserListResponse: Decodable {
+    
     let page: Int
     let per_page: Int
     let total: Int

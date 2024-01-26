@@ -54,7 +54,7 @@ class DashboardViewController: UITableViewController {
     //Se crea la funcion que buscara los usuarios de la pagina 1 o 2
     func fetchUserList() {
         //Se crea la solicitud
-        guard let url = URL(string: "https://reqres.in/api/users?page=2") else {
+        guard let url = URL(string: "https://reqres.in/api/users?page=1") else {
             print("URL incorrecta.")
             return
         }
