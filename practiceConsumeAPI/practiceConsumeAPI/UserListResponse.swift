@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct UserListResponse: Decodable {
-    
+struct UserListResponse: Codable {
     let page: Int
     let per_page: Int
     let total: Int
@@ -16,7 +15,7 @@ struct UserListResponse: Decodable {
     let data: [User]
     let support: Support
 
-    struct Support: Decodable {
+    struct Support: Codable {
         let url: String
         let text: String
     }

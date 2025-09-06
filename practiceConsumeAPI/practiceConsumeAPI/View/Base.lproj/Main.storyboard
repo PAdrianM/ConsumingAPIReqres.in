@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NV2-zg-cNz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NV2-zg-cNz">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -17,13 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fondo" translatesAutoresizingMaskIntoConstraints="NO" id="mCO-72-o6F">
-                                <rect key="frame" x="0.0" y="44" width="393" height="1006"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="393" id="Syl-me-Qmn"/>
-                                    <constraint firstAttribute="height" constant="1006" id="UnU-oc-3a0"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0n-io-K8o">
                                 <rect key="frame" x="131" y="770" width="131" height="44"/>
                                 <constraints>
@@ -71,7 +64,6 @@
                         <constraints>
                             <constraint firstItem="aGo-wJ-Rdw" firstAttribute="leading" secondItem="m0n-io-K8o" secondAttribute="leading" id="6zQ-xz-JaB"/>
                             <constraint firstItem="WCU-E2-Yma" firstAttribute="centerX" secondItem="aGo-wJ-Rdw" secondAttribute="centerX" id="9o3-TA-OeG"/>
-                            <constraint firstItem="mCO-72-o6F" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-59" id="NKw-NG-aK3"/>
                             <constraint firstItem="aGo-wJ-Rdw" firstAttribute="trailing" secondItem="m0n-io-K8o" secondAttribute="trailing" id="Rzq-9b-7uR"/>
                             <constraint firstItem="WCU-E2-Yma" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Wpo-6H-T3h"/>
                             <constraint firstItem="aGo-wJ-Rdw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Z7T-4d-nRo"/>
@@ -80,10 +72,8 @@
                             <constraint firstItem="aGo-wJ-Rdw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="131" id="c7e-00-8af"/>
                             <constraint firstItem="m0n-io-K8o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="caZ-kS-CNa"/>
                             <constraint firstItem="WCU-E2-Yma" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="14" id="eGH-lm-bVz"/>
-                            <constraint firstItem="mCO-72-o6F" firstAttribute="centerX" secondItem="m0n-io-K8o" secondAttribute="centerX" id="ebU-Rr-uKd"/>
                             <constraint firstItem="WCU-E2-Yma" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ekp-ea-sK5"/>
                             <constraint firstItem="aGo-wJ-Rdw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fBt-Cq-exV"/>
-                            <constraint firstItem="mCO-72-o6F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="owT-jD-NTm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2yn-6A-4Nv"/>
@@ -416,7 +406,6 @@
     </scenes>
     <resources>
         <image name="Data me logo 2 (1)" width="500" height="500"/>
-        <image name="Fondo" width="1080" height="1920"/>
         <image name="fondoLogin" width="1080" height="1920"/>
         <image name="fondoRedondo" width="500" height="500"/>
         <image name="person" catalog="system" width="128" height="121"/>
