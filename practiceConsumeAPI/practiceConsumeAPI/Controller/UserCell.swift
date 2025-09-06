@@ -16,20 +16,13 @@ class UserCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        // Configurar la imagen del avatar
-        avatarImageView.layer.cornerRadius = 8
-        avatarImageView.clipsToBounds = true
-        avatarImageView.contentMode = .scaleAspectFill
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        // Limpiar la imagen cuando la celda se reutiliza
-        avatarImageView.image = nil
-    }
+
 }

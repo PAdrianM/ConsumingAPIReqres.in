@@ -33,93 +33,60 @@ class LogInViewController: UIViewController {
     }
     
     private func loginUser(email: String, password: String) {
+        // Construir la URL para la API de login
         let loginURL = URL(string: "https://reqres.in/api/login")!
-        let parameters: [String: String] = ["email": email, "password": password]
         
+        // Crear los parámetros de la solicitud
+        let parameters: [String: String] = ["email": email,"password": password]
+        
+        // Crear la solicitud
         var request = URLRequest(url: loginURL)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("reqres-free-v1", forHTTPHeaderField: "x-api-key") // 🔑 ¡Esta es la línea nueva!
         
+        // Convertir los parámetros a datos JSON
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
-            
-            // DEBUG: Imprimir lo que estás enviando
-            if let bodyData = request.httpBody,
-               let bodyString = String(data: bodyData, encoding: .utf8) {
-                print("🚀 Enviando: \(bodyString)")
-            }
-            
         } catch {
             showAlert(message: "Error al validar los datos. Intentelo mas tarde")
             return
         }
         
-        
         // Realizar la solicitud
         URLSession.shared.dataTask(with: request) { data, response, error in
-               if let error = error {
-                   print("Error: \(error.localizedDescription)")
-                   DispatchQueue.main.async {
-                       self.showAlert(message: "Error en la solicitud: \(error.localizedDescription)")
-                   }
-                   return
-               }
-               
-               guard let httpResponse = response as? HTTPURLResponse else {
-                   DispatchQueue.main.async {
-                       self.showAlert(message: "Respuesta inválida del servidor")
-                   }
-                   return
-               }
-               
-               // DEBUG: Ver qué código de estado recibimos
-               print("Status Code: \(httpResponse.statusCode)")
-               if let data = data,
-                  let responseString = String(data: data, encoding: .utf8) {
-                   print("Response Body: \(responseString)")
-               }
-               
-               if httpResponse.statusCode == 200 {
-                   // Login exitoso
-                   guard let data = data else {
-                       DispatchQueue.main.async {
-                           self.showAlert(message: "No se recibieron datos")
-                       }
-                       return
-                   }
-                   
-                   do {
-                       let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
-                       print("Token: \(loginResponse.token)")
-                       
-                       DispatchQueue.main.async {
-                           self.performSegue(withIdentifier: "toDashboard", sender: nil)
-                           self.emailTextField.text = ""
-                           self.passwordTextField.text = ""
-                       }
-                   } catch {
-                       print("Error decodificando: \(error)")
-                       DispatchQueue.main.async {
-                           self.showAlert(message: "Error al procesar la respuesta: \(error.localizedDescription)")
-                       }
-                   }
-               } else {
-                   // Error en el login
-                   var errorMessage = "Credenciales incorrectas"
-                   
-                   if let data = data {
-                       if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                          let error = json["error"] as? String {
-                           errorMessage = error
-                       }
-                   }
-                   
-                   DispatchQueue.main.async {
-                       self.showAlert(message: "Error \(httpResponse.statusCode): \(errorMessage)")
-                   }
-               }
-           }.resume()
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    // Si el código de estado es 200, consideramos que las credenciales son correctas
+                    do {
+                        let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data!)
+                        print("Token: \(loginResponse.token)")
+                        print("Status Code 200 Success")
+                        
+                        // Navegar al DashboardTableViewController si el inicio de sesión es exitoso
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "toDashboard", sender: nil)
+                            self.emailTextField.text = ""
+                            self.passwordTextField.text = ""
+                        }
+                    } catch {
+                        self.showAlert(message: "Error: Verifique que las credenciales sean correctas")
+                    }
+                } else {
+                    // Si el código de estado no es 200, consideramos que las credenciales son incorrectas
+                    DispatchQueue.main.async {
+                        self.showAlert(message: "Credenciales incorrectas")
+                        
+                        //                        print("Token: \(loginResponse.error)")
+                        print("Status Code 400 Error")
+                    }
+                }
+            } else if let error = error {
+                DispatchQueue.main.async {
+                    self.showAlert(message: "Error en la solicitud: \(error.localizedDescription)")
+                }
+            }
+        }
+        .resume()
     }
     
     func showAlert(message: String) {
